@@ -28,6 +28,23 @@ Every time you save your changes to `test_d.tga`, the file will be converted to 
 
 Fallout 4 Texture Watcher requires Windows & .NET Framework 4.5.
 
+## Usage
+
+1. Download a binary release (link below) and extract it to a folder of your choice.
+2. Run `Fallout4TextureWatcher.exe`.
+3. Important: Set your Source/Textures folder.
+4. Important: Set your Data/Textures folder.
+
+See the About section above if you have questions about these two folders.
+
+Pay attention to the aplication's system tray icon.
+
+- A blue icon means everything is ready.
+- A grey icon means your Sources folder is invalid.
+- An orange icon means a texture is being converted to DDS.
+
+You can double click the tray icon to hide the application from the task bar.
+
 ## Download
 
 1.0 Release coming soon.
