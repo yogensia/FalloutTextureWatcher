@@ -134,5 +134,10 @@
   <ItemGroup>
     <Resource Include="Resources\BinocularsGrey.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="texconv.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
