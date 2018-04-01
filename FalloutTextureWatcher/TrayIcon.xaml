@@ -28,7 +28,7 @@
     <!-- Globally declared notify icon -->
     <tb:TaskbarIcon x:Key="TrayIcon"
                     IconSource="/Resources/Binoculars.ico"
-                    ToolTipText="F4TW - Ready...">
+                    ToolTipText="F4TW">
 
         <!-- Set a simple context menu  -->
         <tb:TaskbarIcon.ContextMenu>

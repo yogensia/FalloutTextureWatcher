@@ -369,19 +369,19 @@ namespace FalloutTextureWatcher
         private static void TrayIconReady()
         {
             tbi.Icon = Properties.Resources.Binoculars;
-            tbi.ToolTipText = "F4TW - Ready...";
+            //tbi.ToolTipText = "F4TW - Ready...";
         }
 
         private static void TrayIconBusy()
         {
             tbi.Icon = Properties.Resources.BinocularsOrange;
-            tbi.ToolTipText = "F4TW - Working!";
+            //tbi.ToolTipText = "F4TW - Working!";
         }
 
         private static void TrayIconError()
         {
             tbi.Icon = Properties.Resources.BinocularsGrey;
-            tbi.ToolTipText = "F4TW - Check Settings!";
+            //tbi.ToolTipText = "F4TW - Check Settings!";
         }
 
         private void TrayIconCmdShowHide(object source, RoutedEventArgs e)
@@ -395,6 +395,7 @@ namespace FalloutTextureWatcher
             {
                 ShowInTaskbar = true;
                 Visibility = Visibility.Visible;
+                Activate();
             }
         }
 

@@ -60,6 +60,7 @@ namespace FalloutTextureWatcher
                     {
                         window.ShowInTaskbar = true;
                         window.Visibility = Visibility.Visible;
+                        window.Activate();
                     }
                 }
             }
