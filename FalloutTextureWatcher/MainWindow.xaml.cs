@@ -64,7 +64,7 @@ namespace FalloutTextureWatcher
         {
             InitializeComponent();
             LoadINIFile();
-            WindowSetup();
+            SetupWindow();
             SetupTrayIcon();
             SetupOutput();
             ConsoleWelcome();
@@ -72,7 +72,7 @@ namespace FalloutTextureWatcher
         }
 
         // Set window title, version, etc.
-        private void WindowSetup()
+        private void SetupWindow()
         {
             // Increment version.
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -97,7 +97,6 @@ namespace FalloutTextureWatcher
 
         private static void ConsoleWelcome()
         {
-            // Wait for the user to quit the program.
             Console.WriteLine("This tool is intended for testing materials " +
                 "quickly. It's not an Elrich replacement. Elrich is still " +
                 "recommended for converting final textures.");
@@ -212,8 +211,11 @@ namespace FalloutTextureWatcher
             // Don't wait forever!
             process.WaitForExit(500);
 
-            Console.WriteLine(DateTime.Now.ToString("[h:mm:ss] tt") + e.Name +
-                " >>> DDS " + textureFormat);
+            string outputName = System.IO.Path.GetFileNameWithoutExtension(e.Name);
+            outputName = System.IO.Path.Combine(outputDir, outputName);
+
+            Console.WriteLine(DateTime.Now.ToString("[h:mm:ss] tt") + outputName +
+                ".dds (" + textureFormat + ")");
 
             // Set Tray icon to free color.
             TrayIconReady();
@@ -310,8 +312,16 @@ namespace FalloutTextureWatcher
                 settingsData = parser.ReadFile("Settings.ini");
             }
 
-            SourceTextBox.Text = settingsData["General"]["SourcePath"];
-            DataTextBox.Text = settingsData["General"]["DataPath"];
+            if (settingsData["General"]["SourcePath"] != "")
+            {
+                SourceTextBox.Text = settingsData["General"]["SourcePath"];
+            }
+
+            if (settingsData["General"]["DataPath"] != "")
+            {
+                DataTextBox.Text = settingsData["General"]["DataPath"];
+            }
+
         }
 
         private static void SaveSettings()
@@ -322,7 +332,6 @@ namespace FalloutTextureWatcher
         }
 
         // Make sure Source directory exists.
-        // TODO: Deprecated.
         private static bool CheckSourcePath(string path)
         {
             if (!Directory.Exists(path))
@@ -338,7 +347,6 @@ namespace FalloutTextureWatcher
         }
 
         // Make sure Data directory exists.
-        // TODO: Deprecated.
         private static bool CheckDataPath(string path)
         {
             if (!Directory.Exists(path))
@@ -362,7 +370,7 @@ namespace FalloutTextureWatcher
         private void SetupTrayIcon()
         {
             tbi = (TaskbarIcon)FindResource("TrayIcon");
-            //tbi.TrayLeftMouseUp += new RoutedEventHandler(TrayIconCmdShowHide);
+            tbi.TrayLeftMouseUp += new RoutedEventHandler(TrayIconCmdFocus);
             tbi.TrayMouseDoubleClick += new RoutedEventHandler(TrayIconCmdShowHide);
         }
 
@@ -397,6 +405,16 @@ namespace FalloutTextureWatcher
                 Visibility = Visibility.Visible;
                 Activate();
             }
+        }
+
+        private void TrayIconCmdFocus(object source, RoutedEventArgs e)
+        {
+            if (WindowState != WindowState.Normal && ShowInTaskbar)
+            {
+                WindowState = WindowState.Normal;
+            }
+
+            Activate();
         }
 
         #endregion TrayIcon
