@@ -27,7 +27,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FalloutTextureWatcher"
         mc:Ignorable="d"
-        Title="Fallout 4 Texture Watcher" Height="350" Width="600" ResizeMode="CanMinimize">
+        Title="Fallout 4 Texture Watcher" Height="350" Width="850" ResizeMode="CanMinimize">
     <StackPanel Margin="20">
         <DockPanel>
             <Button DockPanel.Dock="Right" Content="Browse Source..." Margin="20,0,0,0" Width="100" Click="SetSourcePath"/>
